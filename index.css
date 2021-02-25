@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+:root { background-color: #aaaaaa; }
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #464646d6;
+}
+
+.loader-container {
+  --increment-value   : 1; /* se ve bien con 1, 2 y 3 sin usar el filtro blur */
+  --loader-width      : calc(320px * var(--increment-value));
+  --layer-space       : calc(11px * var(--increment-value));
+  --layer-border-width: calc(10px * var(--increment-value));
+
+  width: var(--loader-width);
+  height: auto;
+  overflow: hidden;
+  background-color: #c3c3c3;
+  /* background-color: #2f2f2f; */
+  border-radius: 50%;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+  padding-top: 100%;
+  border-radius: inherit;
+  filter: blur(calc(12px * var(--increment-value)));
+  box-shadow: inset 0 0 60px 20px #737373;
+}
+
+.container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: block;
+}
+
+.layer-1 { --item: 0; }
+.layer-2 { --item: 1; }
+.layer-3 { --item: 2; }
+.layer-4 { --item: 3; }
+.layer-5 { --item: 4; }
+.layer-6 { --item: 5; }
+.layer-7 { --item: 6; }
+.layer-8 { --item: 7; }
+.layer-9 { --item: 8; }
+.layer-10 { --item: 9; }
+.layer-11 { --item: 10; }
+.layer-12 { --item: 11; }
+.layer-13 { --item: 12; }
+.layer-14 { --item: 13; }
+
+.layer {
+  --layer-border-color: hsl(calc(100 + (10 * var(--item))), 100%, 50%);
+  
+  position: absolute;
+  top: calc(var(--layer-space) * var(--item));
+  left: calc(var(--layer-space) * var(--item));
+  right: calc(var(--layer-space) * var(--item));
+  bottom: calc(var(--layer-space) * var(--item));
+  
+  border: solid var(--layer-border-width) #00000052;
+  border-right-color: var(--layer-border-color);
+  border-bottom-color: var(--layer-border-color);
+  border-radius: 50%;
+
+  transform: rotate(0);
+  
+  will-change: transform;
+  animation-name: waves;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-delay: calc(-0.08s * var(--item));
+}
+
+@keyframes waves {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .loader-container { --increment-value: 1.4; }
+}
+
+@media screen and (min-width: 1440px) {
+  .loader-container { --increment-value: 2; }
+}
