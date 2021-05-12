@@ -66,7 +66,7 @@
 .layer-14 { --item: 13; }
 
 .layer {
-  --layer-border-color: hsl(calc(100 + (10 * var(--item))), 100%, 50%);
+  --layer-border-color: hsl(calc(68 + (5 * var(--item))), 100%, 50%);
   
   position: absolute;
   top: calc(var(--layer-space) * var(--item));
@@ -82,14 +82,14 @@
   transform: rotate(0);
   
   will-change: transform;
-  animation-name: waves;
+  animation-name: wavesLoaderAnimation;
   animation-timing-function: ease-in-out;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-delay: calc(-0.08s * var(--item));
 }
 
-@keyframes waves {
+@keyframes wavesLoaderAnimation {
   0% {
     transform: rotate(0);
   }
